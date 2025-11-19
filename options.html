@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>SoundCloud Designer - Einstellungen</title>
+<style>
+/* Vercel-inspiriertes Design für options.html (v2) */
+
+/* Basiseinstellungen */
+body {
+    width: 100vw;
+    min-height: 100vh;
+    background: #00000000; /* Reines Schwarz */
+    color: #e5e5e5; /* Heller, aber nicht blendender Text */
+    padding: 40px 20px;
+    /* Verbesserter, moderner Font-Stack */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Oben beginnen */
+}
+
+/* Container */
+.config-container {
+    width: 100%;
+    max-width: 650px; 
+    padding: 30px;
+    /* Transparenz und Blur-Effekt (Glass-Morphism-Hauch) */
+    background: rgba(18, 18, 18, 0.85); /* Sehr dunkle Transparenz */
+    backdrop-filter: blur(12px); /* Sanfterer, stärkerer Blur */
+    border-radius: 12px;
+    /* Dezenter, heller Rand */
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); /* Stärkerer Schatten */
+    transition: all 0.3s ease;
+}
+/* Subtiler Effekt beim Hover */
+.config-container:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Überschriften */
+.config-container h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #fff;
+    border-bottom: none;
+}
+.config-container h3 { 
+    margin-top: 35px; /* Etwas mehr Abstand */
+    padding-bottom: 8px;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #ffffff; /* Akzentfarbe */
+    font-weight: 700;
+    letter-spacing: 1px; /* Etwas mehr Letter Spacing */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    margin-bottom: 20px;
+}
+
+/* Labels */
+label { 
+    display: block; 
+    font-size: 14px; 
+    margin-bottom: 6px; 
+    color: #aaaaaa; 
+    font-weight: 500;
+}
+
+/* Text-Inputs */
+input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+    background: #181818; 
+    color: white;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+input[type="text"]:focus {
+    border-color: #1761df;
+    box-shadow: 0 0 0 2px rgba(23, 97, 223, 0.3);
+    outline: none;
+    background: #202020; /* Leichter Hintergrund bei Fokus */
+}
+
+/* Range Sliders Wrapper (NEU: Flexbox-Container für Slider und Wert) */
+.range-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; 
+}
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px; 
+    background: #444;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 0 10px 0 0; 
+    width: calc(100% - 60px); 
+    vertical-align: middle;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #1761df; 
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.range-wrapper span.range-value { /* Neue Klasse für den Wert */
+    font-weight: 600;
+    color: #fff;
+    width: 30px; 
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* Radio Buttons Gruppierung */
+.radio-group {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex; /* Bessere Verteilung */
+    gap: 25px;
+}
+.radio-group label {
+    display: inline-flex; 
+    align-items: center;
+    margin-right: 0; 
+    color: #e5e5e5;
+    font-weight: 400;
+}
+/* Native Radio Button für moderne Browser mit Akzentfarbe */
+.radio-group input[type="radio"] {
+    accent-color: #1761df; /* Setzt die Farbe für native Radios */
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+}
+
+/* Aktive Optionsgruppe */
+#fsBlurryOptions, #fsTransparentOptions, #fsColorOptions {
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    border-radius: 8px;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.03); 
+}
+
+/* Buttons */
+button {
+    background: #1761df;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 25px;
+    font-size: 15px;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(23, 97, 223, 0.2);
+}
+button:hover {
+    background: #1450b5;
+    box-shadow: 0 4px 15px rgba(23, 97, 223, 0.4);
+    transform: translateY(-1px);
+}
+button:active {
+    transform: translateY(0);
+}
+
+
+hr {
+    border: 0; 
+    border-top: 1px solid #333; 
+    margin: 30px 0;
+}
+</style>
+</head>
+<body>
+
+<div class="config-container">
+    <h2>SoundCloud Designer Einstellungen</h2>
+
+    <h3>🎨 Custom Theme</h3>
+    <label for="bgImage">Background Image URL:</label>
+    <input type="text" id="bgImage" placeholder="Enter URL" value="">
+    <label for="bgColor">Primary Button Color (Hex):</label>
+    <input type="text" id="bgColor" placeholder="#1761df" value="">
+    
+    <button id="applyBtn">Einstellungen speichern & anwenden</button>
+    
+    <hr>
+
+    <h3>📺 Fullscreen Player Settings</h3>
+    
+    <div class="radio-group">
+        <label>
+            <input type="radio" name="fsBgType" value="blurry" id="fsBgTypeBlurry" checked> Blurry
+        </label>
+        <label>
+            <input type="radio" name="fsBgType" value="transparent" id="fsBgTypeTransparent"> Transparent Color
+        </label>
+        <label>
+            <input type="radio" name="fsBgType" value="color" id="fsBgTypeColor"> Solid Color
+        </label>
+    </div>
+    
+    <div id="fsBlurryOptions" style="display: block;">
+        <label for="fsBlurStrength">Blur Strength (px):</label>
+        <div class="range-wrapper">
+            <input type="range" id="fsBlurStrength" min="0" max="30" value="10">
+            <span id="fsBlurValue" class="range-value">10</span> px
+        </div>
+    </div>
+    
+    <div id="fsTransparentOptions" style="display: none;">
+        <label for="fsTransColor">Transparent Color (Hex):</label>
+        <input type="text" id="fsTransColor" placeholder="#000000" value="#000000">
+        <label for="fsTransStrength">Opacity (%):</label>
+        <div class="range-wrapper">
+            <input type="range" id="fsTransStrength" min="0" max="100" value="40">
+            <span id="fsTransValue" class="range-value">40</span> %
+        </div>
+    </div>
+
+    <div id="fsColorOptions" style="display: none;">
+        <label for="fsNormalColor">Solid Color (Hex):</label>
+        <input type="text" id="fsNormalColor" placeholder="#000000" value="#000000">
+    </div>
+    
+    <button id="fsApplyBtn">Fullscreen Einstellungen speichern</button>
+
+</div>
+
+<script>
+// Mock-Skript zur Simulation der popup.js-Logik für die Optionsseite.
+document.addEventListener("DOMContentLoaded", async () => {
+    
+    // UI-HELPER (Sichtbarkeit der Optionen steuern)
+    function setOptionVisibility(type) {
+        document.getElementById("fsBlurryOptions").style.display = type === 'blurry' ? 'block' : 'none';
+        document.getElementById("fsTransparentOptions").style.display = type === 'transparent' ? 'block' : 'none';
+        document.getElementById("fsColorOptions").style.display = type === 'color' ? 'block' : 'none';
+    }
+    
+    // HINWEIS: Hier müsste IHR ECHTER Code zum Laden der Einstellungen aus browser.storage.local stehen.
+    const settings = { 
+        bgImage: "", 
+        bgColor: "#1761df", 
+        fsBgType: "blurry",
+        fsBlurStrength: 10,
+        fsTransColor: "#000000",
+        fsTransStrength: 40,
+        fsNormalColor: "#000000",
+    };
+    
+    // Initiales Setzen der Werte
+    if (settings.bgImage) document.getElementById("bgImage").value = settings.bgImage;
+    if (settings.bgColor) document.getElementById("bgColor").value = settings.bgColor;
+    
+    document.getElementById("fsBlurStrength").value = settings.fsBlurStrength;
+    document.getElementById("fsTransColor").value = settings.fsTransColor;
+    document.getElementById("fsTransStrength").value = settings.fsTransStrength;
+    document.getElementById("fsNormalColor").value = settings.fsNormalColor;
+    
+    const fsBgTypeRadio = document.getElementById(`fsBgType${settings.fsBgType.charAt(0).toUpperCase() + settings.fsBgType.slice(1)}`);
+    if (fsBgTypeRadio) {
+        fsBgTypeRadio.checked = true;
+    } else {
+        document.getElementById("fsBgTypeBlurry").checked = true;
+    }
+    
+    // INITIALISIERUNG
+    setOptionVisibility(document.querySelector('input[name="fsBgType"]:checked').value);
+    
+    // RANGE-UPDATES (Anzeige der aktuellen Werte neben dem Slider)
+    const rangeInputs = [
+        { range: "fsBlurStrength", value: "fsBlurValue" },
+        { range: "fsTransStrength", value: "fsTransValue" }
+    ];
+
+    rangeInputs.forEach(item => {
+        const range = document.getElementById(item.range);
+        const value = document.getElementById(item.value);
+        if (range && value) {
+            range.addEventListener("input", (e) => {
+                value.textContent = e.target.value;
+            });
+            // Initialen Wert setzen
+            value.textContent = range.value;
+        }
+    });
+
+    // LISTENERS FÜR RADIO-BUTTONS
+    document.querySelectorAll('input[name="fsBgType"]').forEach(radio => {
+        radio.addEventListener("change", (e) => {
+            setOptionVisibility(e.target.value);
+        });
+    });
+
+    // MOCK-FUNKTIONALITÄT FÜR BUTTONS (HIER MUSS IHRE ECHTE LOGIK REIN)
+    document.getElementById("applyBtn").addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log('Theme settings saved and applied (MOCK).');
+        // Hier muss der Code zum Speichern der Theme-Einstellungen eingefügt werden.
+    });
+    document.getElementById("fsApplyBtn").addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log('Fullscreen settings saved (MOCK).');
+        // Hier muss der Code zum Speichern der Fullscreen-Einstellungen eingefügt werden.
+    });
+});
+</script>
+
+</body>
+</html>

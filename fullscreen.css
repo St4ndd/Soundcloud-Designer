@@ -1,0 +1,101 @@
+#sc-fs-overlay {
+    position: fixed;
+    inset: 0;
+    
+    /* WICHTIG: backdrop-filter MUSS hier entfernt werden, um JS-Kontrolle zu ermöglichen. */
+    /* background: transparent !important; und backdrop-filter: blur(10px); sind entfernt */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2147483647;
+    opacity: 0;
+    transition: opacity .18s ease;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Hintergrund-Ebene für Blurry und Transparent Color. Farbe/Blur wird in JS gesetzt */
+#sc-fs-bg {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* background wird in JS gesetzt (z.B. rgba(0, 0, 0, 0.4) bei Blurry) */
+    z-index: -1; 
+}
+
+/* Dieses Pseudo-Element wird nicht mehr benötigt, da #sc-fs-bg es ersetzt. */
+#sc-fs-overlay::before {
+    /* Sollte leer bleiben */
+}
+
+/* Restliche Styles (Controls, Cover, etc.) sind OK */
+#sc-fs-cover {                      /* Stil des Coverbildes im Fullscreen Modus Ändern*/
+    max-width: 65%;
+    max-height: 65%;
+    border-radius: 14px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.6);
+    transition: transform .25s ease, opacity .2s ease;
+}
+
+#sc-fs-controls {                   /* Stil des Control Panels im Fullscreen Modus Ändern*/
+    position: absolute;
+    bottom: 80px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+#sc-fs-close {                      /* Stil des Schließen Buttons Ändern*/       
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .15s ease;
+}
+
+#sc-fs-controls .sc-fs-btn {        /* Stil der Buttons im Fullscreen Modus Ändern*/     
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    transition: transform .12s ease, background .12s ease;
+}
+
+#sc-fs-controls .sc-fs-btn:hover {  /* Hover Effekt für die Buttons Ändern*/
+    transform: scale(1.06);
+    background: rgba(255,255,255,0.12);
+}
+
+#sc-fs-controls .sc-fs-btn svg path {
+    fill: #fff; /* SVG Pfade weiß */     
+} 
+
+
+.sc-fs-inserted {
+    margin-left: 20px;                  /*Abstand von dem fullscreen button zu den anderen buttons Ändern*/
+}
+
+.sc-fs-inserted svg{
+    fill: #fff;                         /*farbe von dem fullscreen button svg Ändern*/
+}

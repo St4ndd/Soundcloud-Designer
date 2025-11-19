@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "SoundCloud Designer (Fullscreen Mode & Custom Style)",
+  "version": "1.0",
+  "description": "Dark Theme of SoundCloud with customizable background and a fullscreen mode for better music experience.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["*://soundcloud.com/*"],
+      "css": ["style.css", "fullscreen.css", "designer_sidebar.css"],
+      "js": ["content.js", "fullscreen.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  
+  "action": {
+    "default_icon": "icon48.png",
+    "default_title": "Toggle Designer Sidebar" 
+  },
+  
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "soundcloud-designer@example.com",
+      "strict_min_version": "109.0"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "blue_space_8k.jpg",
+        "icon48.png",
+        "icon128.png"
+      ],
+      "matches": ["*://soundcloud.com/*"]
+    }
+  ]
+}

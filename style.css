@@ -1,0 +1,318 @@
+/* =========================
+   Theme Farben
+   ========================= */
+:root {
+    /* Hintergrund */
+    --bg-body: url("blue_space_8k.jpg") !important; /* Hintergrundbild */
+    --bg-default: #001f4d; /* dunkles Blau für Elemente */
+    --bg-overlay: #000000ab; /* halbtransparent schwarz für Overlays */
+
+    /* Buttons */
+    --btn-primary: #1761df; /* blau, z.B. für Upgrade/Badge */
+    --btn-secondary: #ffffff75; /* transparent weiß für Play/Pause/Skip */
+
+    /* Input / Header */
+    --header-bg: #000000ab;
+    --input-bg: #00000000; /* transparent */
+    --input-focus-border: #ffffff;
+    --input-unfocus-border: #9e9e9e;
+
+    /* Toggle */
+    --toggle-on-bg: #1d0ac773; 
+    --toggle-off-bg: #db2626; 
+    --toggle-handle: #ffffff;
+
+    /* Tiles & Overlays */
+    --tile-overlay: #000000ab; 
+    --sidebar-bg: #000000ab;
+
+    /* Border Radius */
+    --radius: 12px;
+
+    /*Hidden*/
+    --artist-tools-visibility: hidden;
+
+    /*transparent*/
+    --transparent-color: #00000000;
+    
+    /* === DYNAMISCHE VARIABLEN (Von content.js gesteuert) === */
+    --upgrade-btn-visibility: block; /* Standardwert */
+    --upgrade-btn-custom-color: #ff5500; /* Standardwert */
+    --player-bar-bg-color: #000000ab; /* Standardwert */
+    --player-bar-backdrop-filter: blur(8px); /* Standardwert */
+    --header-bg-color: #000000ab; /* Standardwert */
+    --header-backdrop-filter: blur(8px); /* Standardwert */
+}
+
+/* =========================
+   Body Hintergrund
+   ========================= */
+body {
+    background-image: var(--bg-body);
+    background-size: cover;      /* oder '100% 100%' für exakt anpassen */
+    background-repeat: no-repeat; /* verhindert Kacheln */
+    background-attachment: fixed; /* Bild bleibt beim Scrollen stehen */
+    background-position: center;  /* zentriert das Bild */
+}
+
+
+/* =========================
+   Mixed Selection / Module
+   ========================= */
+.mixedSelectionModule {
+    margin-top: 2vw;
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    transition: background 0.3s ease;
+    background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay));
+    background-repeat: repeat, no-repeat;
+    background-size: 100px 100px, auto;
+}
+
+.mixedModularHome__item {
+    margin-top: 2vw;
+}
+
+/* =========================
+   Upgrade / Subscription Buttons (Statische Farben)
+   ========================= */
+.creatorSubscriptionsButton.header__button {
+    border-color: var(--btn-primary) !important;
+}
+
+.newItemBadge.newItems__some {
+    background: var(--btn-primary) !important;
+}
+
+/* =========================
+   Header (JETZT DYNAMISCH)
+   ========================= */
+header.header,
+.header {
+    /* WICHTIG: Nutzt jetzt die dynamischen Variablen */
+    background-color: var(--header-bg-color) !important;
+    backdrop-filter: var(--header-backdrop-filter) !important;
+    -webkit-backdrop-filter: var(--header-backdrop-filter) !important;
+    transition: background 0.3s ease;
+}
+
+/* Header Input */
+.sc-input {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-unfocus-border) !important;
+}
+
+.sc-input:focus {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-focus-border) !important;
+}
+
+/* =========================
+   Buttons (Pause / Play / Skip)
+   ========================= */
+.sc-button.sc-button-secondary {
+    background-color: var(--transparent-color);
+}
+
+.sc-button.sc-button-next, 
+.sc-button.sc-button-pause, 
+.sc-button.sc-button-play, 
+.sc-button.sc-button-prev, 
+.sc-button.sc-button.sc-button-blocked {
+    background-color: var(--btn-secondary);
+}
+
+/* =========================
+   Musik Card / Tile
+   ========================= */
+.playableTile__imageOverlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 3%;
+    pointer-events: none;
+    background-color: var(--tile-overlay);
+}
+
+/* Sidebar */
+.streamSidebar {
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    transition: background 0.3s ease;
+    background-image: linear-gradient(var(--sidebar-bg), var(--sidebar-bg));
+    background-repeat: repeat, no-repeat;
+    background-size: 100px 100px, auto;
+}
+
+/* =========================
+   Toggle Switch Transparent
+   ========================= */
+
+/* Hintergrund, wenn eingeschaltet */
+.toggle.sc-toggle.sc-toggle-active.sc-toggle-on::before {
+    background-color: transparent !important;
+}
+
+/* Hintergrund, wenn ausgeschaltet */
+.toggle.sc-toggle::before {
+    background-color: transparent !important;
+}
+
+/* Griff / Hebel */
+.sc-toggle-handle {
+    background-color: var(--toggle-handle) !important;
+}
+
+
+/* Freischalten von Artist-Tools ab 2,99 € monatlich ausblenden */
+.sidebarModule__webiEmbeddedModule,
+.webiEmbeddedModule,
+.webiEmbeddedModuleContainer,
+.webiEmbeddedModuleIframe {
+    display: none !important;
+}
+
+/* Mobile Version Sidebar komplett ausblenden */
+.sidebarModule.mobileApps {
+    display: none !important;
+}
+
+
+/* Footer Sprache-Auswahl komplett entfernen */
+.footer__localeSelector {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Kompletten Footer ausblenden */
+.l-footer {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Extra für den Footer-Sprache-Selector, falls er noch separat ist */
+.footer__localeSelector {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* Button Hintergrund */
+.sc-button-play {
+    background-color: #000000c2 !important;
+}
+
+/* SVG auf weiß setzen */
+.sc-button-play svg path {
+    fill: #ffffff !important;
+}
+
+
+
+/* WAVEFORM EINFÄRBEN */
+.waveform .sceneLayer {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(200deg);
+}
+
+/* Farbe der markierten/commented Bereiche */
+.commentPopover__playableArea {
+    background-color: #f50 !important; /* hier die gewünschte Farbe */
+}
+
+/* Optional: Transparenz oder sanften Farbverlauf */
+.commentPopover__playableArea {
+    background-color: rgba(245, 85, 0, 0.6) !important;
+}
+
+.headerMenu__link.m-highlight{
+    color: var(--btn-primary) !important;
+}
+
+
+/* =========================
+   Dropdown Menü transparent / glossy
+   ========================= */
+.dropdownMenu {
+    background: rgba(0,0,0,0.5) !important;
+    backdrop-filter: blur(8px) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+}
+
+.dropdownMenu * {
+    background: transparent !important;
+}
+
+
+/* Serachtitle auf transparent machen.*/
+.searchTitle {
+    background-color: transparent !important;
+}
+
+
+/* =======================================
+   Upgrade / Subscription Button Fix
+   (Dynamische Steuerung über JS)
+   ======================================= */
+
+/* 1. Sichtbarkeit/Ausblenden */
+/* Zielt auf den Premium-Button, den Pro-Link und alle anderen Go-Premium-Buttons */
+.header__userNav .goPremiumButton,
+.header__userNav a[href$="/premium"],
+.header__userNav a[href$="/pro"],
+.goPremiumButton,
+a[href*="/pro-unlimited"] { 
+    /* WICHTIG: Erbt 'none' oder 'flex' aus JS */
+    display: var(--upgrade-btn-visibility) !important;
+    /* Zusätzliche Absicherung für die Sichtbarkeit */
+    visibility: var(--upgrade-btn-visibility) !important; 
+}
+
+/* 2. Farbe anwenden */
+.goPremiumButton,
+.header__userNav a[href$="/premium"],
+.header__userNav a[href$="/pro"],
+.sc-button-upgrade {
+    background-color: var(--upgrade-btn-custom-color) !important;
+    border-color: var(--upgrade-btn-custom-color) !important;
+    color: white !important;
+}
+
+
+/* =======================================
+   Bottom Bar / Play Controls Fix
+   (Dynamische Steuerung über JS)
+   ======================================= */
+
+/* 1. Hauptcontainer der Leiste (Träger des Blur-Effekts) */
+.playControls {
+    background-color: var(--player-bar-bg-color) !important;
+    backdrop-filter: var(--player-bar-backdrop-filter) !important;
+    -webkit-backdrop-filter: var(--player-bar-backdrop-filter) !important;
+}
+
+/* 2. Hintergrund der inneren Elemente entfernen */
+/* Muss transparent sein, damit der Backdrop-Filter der Eltern-Bar durchscheint */
+.playControls .player,
+.playControls .progress,
+.playControls .progress-bar,
+.playControls .playbackTimeline {
+    background-color: transparent !important;
+}
+
+/* 3. Manchmal hat der Player-Container einen eigenen Shadow/Background, diesen entfernen */
+.player {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
