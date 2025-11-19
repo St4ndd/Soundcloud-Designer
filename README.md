@@ -1,9 +1,20 @@
 # SoundCloud Designer
 
-[![Version](https://img.shields.io/badge/version-1.0-blue.svg)](https://github.com/yourusername/Soundcloud-Designer)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Firefox](https://img.shields.io/badge/Firefox-109%2B-orange.svg)](https://www.mozilla.org/firefox/)
-[![Manifest](https://img.shields.io/badge/Manifest-V3-purple.svg)](manifest.json)
+<p align="center">
+  <a href="https://github.com/yourusername/Soundcloud-Designer">
+    <img src="https://img.shields.io/badge/version-1.0-blue.svg">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-green.svg">
+  </a>
+  <a href="https://www.mozilla.org/firefox/">
+    <img src="https://img.shields.io/badge/Firefox-109%2B-orange.svg">
+  </a>
+  <a href="manifest.json">
+    <img src="https://img.shields.io/badge/Manifest-V3-purple.svg">
+  </a>
+</p>
+
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
