@@ -1,101 +1,110 @@
+<div align="center">
+
+<img src="./icon128.png" alt="Extension Icon" width="120">
 
 # SoundCloud Designer
-
+### Transform Your Listening Experience
 
 <p align="center">
-  <img src="icon128.png" alt="SoundCloud Designer Banner">
+  <img src="https://img.shields.io/badge/version-1.0-1761df?style=for-the-badge" alt="Version">
+  <img src="https://img.shields.io/badge/license-MIT-00d26a?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/Firefox-109+-FF7139?style=for-the-badge&logo=firefox-browser&logoColor=white" alt="Firefox">
+  <img src="https://img.shields.io/badge/Manifest-V3-9333ea?style=for-the-badge" alt="Manifest">
 </p>
 
 <p align="center">
-  <em>A browser extension that enhances the SoundCloud experience with custom themes, a fullscreen player, and an improved user interface.</em>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/WebExtensions-00ADD8?style=flat-square&logo=mozillafirefox&logoColor=white" alt="WebExtensions">
 </p>
 
-<p align="center">
-  <a href="https://github.com/yourusername/Soundcloud-Designer">
-    <img src="https://img.shields.io/badge/version-1.0-blue.svg" alt="Version">
-  </a>
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
-  </a>
-  <a href="https://www.mozilla.org/firefox/">
-    <img src="https://img.shields.io/badge/Firefox-109%2B-orange.svg" alt="Firefox">
-  </a>
-  <a href="manifest.json">
-    <img src="https://img.shields.io/badge/Manifest-V3-purple.svg" alt="Manifest V3">
-  </a>
+<img src="./banner.png" alt="Banner" width="100%">
+
+<p align="center"><strong>Custom themes • Stunning backgrounds • Immersive fullscreen player</strong></p>
+
+<p>
+  <a href="#features">Features</a> • 
+  <a href="#installation">Installation</a> • 
+  <a href="#usage">Usage</a> • 
+  <a href="#customization-examples">Examples</a> • 
+  <a href="#contributing">Contributing</a>
 </p>
 
-<p align="center">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black" alt="JavaScript">
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
-    <img src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white" alt="CSS3">
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
-    <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white" alt="HTML5">
-  </a>
-</p>
+<br>
+</div>
 
----
+----------
 
 ## Features
 
+<table>
+  <tr>
+    <td width="50%">
+
 ### Custom Theming
-- Background customization with custom image URLs  
-- Adjustable primary accent color  
-- Optional glass-morphism (blur/transparent UI elements)  
-- Available dark theme  
+
+- **Background Customization** – Set any image URL as your SoundCloud background  
+- **Color Accent Control** – Customize primary button colors with hex codes  
+- **Glass-Morphism Design** – Modern UI with blur effects  
+- **Dark Theme** – Eye-friendly interface
+
+</td>
+<td width="50%">
 
 ### Fullscreen Player
-- Distraction-free fullscreen playback  
-- Three background modes: blurry, transparent, solid  
-- Adjustable blur and opacity  
-- Updated cover art in real time  
-- Interface appears on mouse movement  
 
-### Configuration
-- Sidebar settings panel  
-- Changes apply instantly  
-- Persistent storage  
-- Clean, modern interface  
+- **Immersive Mode** – Distraction-free fullscreen player  
+- **Three Background Styles** – Blurry, Transparent, Solid  
+- **Intuitive Controls**  
+- **Auto-sync** cover art  
+- **Hover Interface**
+
+</td>
+</tr>
+</table>
+
+<div align="center">
+
+### Background Styles
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/Blurry-1761df?style=for-the-badge" alt="Blurry"><br>
+      <sub>Adjustable blur strength (0–30px)</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/Transparent-9333ea?style=for-the-badge" alt="Transparent"><br>
+      <sub>Custom color with opacity</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/Solid_Color-00d26a?style=for-the-badge" alt="Solid"><br>
+      <sub>Single-color background</sub>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+### Easy Configuration
+
+- Sidebar Settings Panel  
+- Real-time Preview  
+- Persistent Storage  
+- Clean UI  
+
+----------
+
+<div align="center">
 
 ## Installation
 
+</div>
+
 ### Firefox
-1. Repository herunterladen oder klonen  
-2. Firefox öffnen und zu `about:debugging` navigieren  
-3. „This Firefox“ auswählen  
-4. „Load Temporary Add-on“ auswählen  
-5. Die Datei `manifest.json` aus dem Projektordner laden  
 
-### Chrome/Edge (Geplant)
-Unterstützung für Chromium-Browser wird hinzugefügt.
-
-## Verwendung
-
-### Einstellungen öffnen
-1. SoundCloud unter https://soundcloud.com öffnen  
-2. Erweiterungssymbol im Browser klicken  
-3. Die Seitenleiste erscheint  
-
-### Theme anpassen
-1. Bild-URL für Hintergrund eintragen  
-2. Primärfarbe als Hex-Code eingeben  
-3. „Save & Apply Theme“ anklicken  
-
-### Vollbildmodus
-1. Vollbildsymbol im Player verwenden  
-2. Hintergrundstil auswählen (Blurry, Transparent, Solid)  
-3. Maus bewegen, um Steuerung einzublenden  
-4. ESC zum Beenden  
-
-## Tastenkürzel
-
-| Taste  | Funktion                 |
-|--------|---------------------------|
-| ESC    | Vollbildmodus verlassen   |
-| Space  | Wiedergabe/Pause          |
-
-## Projektstruktur
+```bash
+git clone https://github.com/yourusername/Soundcloud-Designer.git
+cd Soundcloud-Designer
 
