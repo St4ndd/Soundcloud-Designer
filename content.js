@@ -501,26 +501,50 @@ function setPrimaryColor(color) {
  * @param {object} settings - Die gespeicherten Theme-Einstellungen.
  */
 function applyPlayerBarStyles(settings) {
+    console.log('🎵 applyPlayerBarStyles aufgerufen mit:', settings);
+    
     const root = document.documentElement;
-    const { playerBarBgType, playerBarBlurStrength, playerBarTransStrength, playerBarColor } = settings;
+    
+    const bgType = settings.playerBarBgType || 'blurry';
+    const blurStrength = settings.playerBarBlurStrength || 10;
+    const transColor = settings.playerBarTransColor || '#000000';
+    const transStrength = settings.playerBarTransStrength || 70;
+    const normalColor = settings.playerBarNormalColor || '#000000';
 
-    let bgColor = 'initial';
+    let bgColor = 'transparent';
     let backdropFilter = 'none';
 
-    if (playerBarBgType === 'blurry') {
-        bgColor = hexToRgba(playerBarColor, playerBarTransStrength);
-        backdropFilter = `blur(${playerBarBlurStrength}px)`;
-    } else if (playerBarBgType === 'transparent') {
-        bgColor = hexToRgba(playerBarColor, playerBarTransStrength);
+    if (bgType === 'blurry') {
+        bgColor = hexToRgba(transColor, transStrength);
+        backdropFilter = `blur(${blurStrength}px)`;
+    } else if (bgType === 'transparent') {
+        bgColor = hexToRgba(transColor, transStrength);
         backdropFilter = 'none';
-    } else if (playerBarBgType === 'normal') {
-        bgColor = playerBarColor;
+    } else if (bgType === 'color') {
+        bgColor = normalColor;
         backdropFilter = 'none';
     }
 
+    console.log('🎨 Setze CSS-Variablen:', {
+        '--player-bar-bg-color': bgColor,
+        '--player-bar-backdrop-filter': backdropFilter
+    });
+
     root.style.setProperty('--player-bar-bg-color', bgColor);
     root.style.setProperty('--player-bar-backdrop-filter', backdropFilter);
+    
+    // ZUSÄTZLICH: Direkt auf die Elemente anwenden als Fallback
+    const playControls = document.querySelector('.playControls');
+    if (playControls) {
+        playControls.style.setProperty('background-color', bgColor, 'important');
+        playControls.style.setProperty('backdrop-filter', backdropFilter, 'important');
+        playControls.style.setProperty('-webkit-backdrop-filter', backdropFilter, 'important');
+        console.log('✅ Styles direkt auf .playControls angewendet');
+    } else {
+        console.warn('⚠️ .playControls Element nicht gefunden!');
+    }
 }
+
 
 // --------------------------------------------------------------------------------
 
@@ -529,26 +553,90 @@ function applyPlayerBarStyles(settings) {
  * Setzt die CSS-Variablen --header-bg-color und --header-backdrop-filter.
  * @param {object} settings - Die gespeicherten Theme-Einstellungen.
  */
-function applyHeaderStyles(settings) {
+function applyUpgradeButtonStyles(settings) {
+    console.log('💎 applyUpgradeButtonStyles aufgerufen mit:', settings);
+    
     const root = document.documentElement;
-    const { headerBgType, headerBlurStrength, headerTransStrength, headerColor } = settings;
+    
+    const hideBtn = settings.hideUpgradeBtn || false;
+    const btnColor = settings.upgradeBtnColor || '#ff5500';
+    
+    const displayValue = hideBtn ? 'none' : 'flex';
+    
+    console.log('🎨 Setze Upgrade Button CSS-Variablen:', {
+        '--upgrade-btn-visibility': displayValue,
+        '--upgrade-btn-custom-color': btnColor
+    });
+    
+    root.style.setProperty('--upgrade-btn-visibility', displayValue);
+    root.style.setProperty('--upgrade-btn-custom-color', btnColor);
+    
+    // ZUSÄTZLICH: Direkt auf die Buttons anwenden
+    const upgradeButtons = document.querySelectorAll(
+        '.goPremiumButton, ' +
+        '.header__userNav a[href$="/premium"], ' +
+        '.header__userNav a[href$="/pro"], ' +
+        '.creatorSubscriptionsButton.header__button'
+    );
+    
+    console.log(`📍 Gefundene Upgrade Buttons: ${upgradeButtons.length}`);
+    
+    upgradeButtons.forEach((btn, index) => {
+        if (hideBtn) {
+            btn.style.setProperty('display', 'none', 'important');
+        } else {
+            btn.style.setProperty('display', 'flex', 'important');
+            btn.style.setProperty('background-color', btnColor, 'important');
+            btn.style.setProperty('border-color', btnColor, 'important');
+        }
+        console.log(`✅ Button ${index + 1} aktualisiert`);
+    });
+}
 
-    let bgColor = 'initial';
-    let backdropFilter = 'none';
-
-    if (headerBgType === 'blurry') {
-        bgColor = hexToRgba(headerColor, headerTransStrength);
-        backdropFilter = `blur(${headerBlurStrength}px)`;
-    } else if (headerBgType === 'transparent') {
-        bgColor = hexToRgba(headerColor, headerTransStrength);
-        backdropFilter = 'none';
-    } else if (headerBgType === 'normal') {
-        bgColor = headerColor;
-        backdropFilter = 'none';
-    }
-
-    root.style.setProperty('--header-bg-color', bgColor);
-    root.style.setProperty('--header-backdrop-filter', backdropFilter);
+function setupDynamicStyleObserver() {
+    const observer = new MutationObserver((mutations) => {
+        let needsUpdate = false;
+        
+        mutations.forEach(mutation => {
+            mutation.addedNodes.forEach(node => {
+                if (node.nodeType === 1) { // Element node
+                    // Prüfe ob Play Controls hinzugefügt wurden
+                    if (node.classList && node.classList.contains('playControls')) {
+                        needsUpdate = true;
+                        console.log('🔄 playControls wurde dynamisch hinzugefügt');
+                    }
+                    // Prüfe ob Upgrade Buttons hinzugefügt wurden
+                    if (node.classList && (
+                        node.classList.contains('goPremiumButton') ||
+                        node.classList.contains('creatorSubscriptionsButton')
+                    )) {
+                        needsUpdate = true;
+                        console.log('🔄 Upgrade Button wurde dynamisch hinzugefügt');
+                    }
+                }
+            });
+        });
+        
+        if (needsUpdate) {
+            // Styles erneut anwenden nach kurzer Verzögerung
+            setTimeout(async () => {
+                const settings = await browser.storage.local.get([
+                    'playerBarBgType', 'playerBarBlurStrength', 'playerBarTransColor', 
+                    'playerBarTransStrength', 'playerBarNormalColor',
+                    'hideUpgradeBtn', 'upgradeBtnColor'
+                ]);
+                applyPlayerBarStyles(settings);
+                applyUpgradeButtonStyles(settings);
+            }, 100);
+        }
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+    
+    console.log('👁️ MutationObserver für dynamische Styles aktiviert');
 }
 
 // --------------------------------------------------------------------------------
@@ -560,13 +648,20 @@ function applyHeaderStyles(settings) {
 function applyUpgradeButtonStyles(settings) {
     const root = document.documentElement;
     
-    // Sichtbarkeit (block/none)
-    const displayValue = settings.hideUpgradeButton ? 'none' : 'block';
+    // Verwende die richtigen Keys
+    const hideBtn = settings.hideUpgradeBtn || false;
+    const btnColor = settings.upgradeBtnColor || '#ff5500';
+    
+    // Sichtbarkeit (none/flex statt block, da Buttons inline sind)
+    const displayValue = hideBtn ? 'none' : 'flex';
     root.style.setProperty('--upgrade-btn-visibility', displayValue);
     
     // Farbe
-    root.style.setProperty('--upgrade-btn-custom-color', settings.upgradeButtonColor);
+    root.style.setProperty('--upgrade-btn-custom-color', btnColor);
+    
+    console.log('Upgrade Button Styles Applied:', { displayValue, btnColor });
 }
+
 
 
 // ===============================
@@ -593,17 +688,17 @@ function setupObserver() {
 
 /** Initialisiert die Skript-Logik */
 function init() {
-    // 1. Nachrichten-Listener für das Öffnen/Schließen der Sidebar vom Background-Script
     browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
         if (request.type === "toggleSidebar") {
             toggleSidebar();
         }
     });
 
-    // 2. Initiales Theme laden und anwenden (schnell, bevor Observer startet)
-    loadSettings().catch(err => console.error("Fehler beim initialen Laden der Einstellungen:", err));
-
-    // 3. Observer starten
+    loadSettings().catch(err => console.error("Fehler beim initialen Laden:", err));
+    
+    // NEU: Observer für dynamische Elemente
+    setupDynamicStyleObserver();
+    
     setupObserver();
 }
 

@@ -266,24 +266,25 @@ header.header,
    (Dynamische Steuerung über JS)
    ======================================= */
 
-/* 1. Sichtbarkeit/Ausblenden */
+/* 1. Sichtbarkeit/Ausblenden - MEHR SPEZIFITÄT */
 /* Zielt auf den Premium-Button, den Pro-Link und alle anderen Go-Premium-Buttons */
-.header__userNav .goPremiumButton,
-.header__userNav a[href$="/premium"],
-.header__userNav a[href$="/pro"],
-.goPremiumButton,
-a[href*="/pro-unlimited"] { 
-    /* WICHTIG: Erbt 'none' oder 'flex' aus JS */
+header.header .header__userNav .goPremiumButton,
+header.header .header__userNav a[href$="/premium"],
+header.header .header__userNav a[href$="/pro"],
+header.header .header__userNav a[href*="/pro-unlimited"],
+.header__navMenu .goPremiumButton,
+.creatorSubscriptionsButton.header__button { 
     display: var(--upgrade-btn-visibility) !important;
-    /* Zusätzliche Absicherung für die Sichtbarkeit */
-    visibility: var(--upgrade-btn-visibility) !important; 
+    visibility: visible !important; /* Überschreibt mögliche visibility:hidden */
 }
 
-/* 2. Farbe anwenden */
-.goPremiumButton,
-.header__userNav a[href$="/premium"],
-.header__userNav a[href$="/pro"],
-.sc-button-upgrade {
+/* 2. Farbe anwenden - MEHR SPEZIFITÄT */
+header.header .header__userNav .goPremiumButton,
+header.header .header__userNav a[href$="/premium"],
+header.header .header__userNav a[href$="/pro"],
+.header__navMenu .goPremiumButton,
+.sc-button-upgrade,
+.creatorSubscriptionsButton.header__button {
     background-color: var(--upgrade-btn-custom-color) !important;
     border-color: var(--upgrade-btn-custom-color) !important;
     color: white !important;
@@ -292,27 +293,51 @@ a[href*="/pro-unlimited"] {
 
 /* =======================================
    Bottom Bar / Play Controls Fix
-   (Dynamische Steuerung über JS)
+   (KOMPLETT ÜBERARBEITET mit höherer Spezifität)
    ======================================= */
 
-/* 1. Hauptcontainer der Leiste (Träger des Blur-Effekts) */
-.playControls {
+/* 1. Hauptcontainer der Leiste - WICHTIG: Mehrere Selektoren für alle Varianten */
+.playControls,
+.playControls__wrapper,
+.playControls.m-visible,
+div.playControls,
+.playControls__inner {
     background-color: var(--player-bar-bg-color) !important;
     backdrop-filter: var(--player-bar-backdrop-filter) !important;
     -webkit-backdrop-filter: var(--player-bar-backdrop-filter) !important;
 }
 
 /* 2. Hintergrund der inneren Elemente entfernen */
-/* Muss transparent sein, damit der Backdrop-Filter der Eltern-Bar durchscheint */
-.playControls .player,
-.playControls .progress,
-.playControls .progress-bar,
-.playControls .playbackTimeline {
+/* ALLE möglichen Kinder transparent machen */
+.playControls *,
+.playControls .playbackSoundBadge,
+.playControls .playbackSoundBadge__body,
+.playControls .playControls__inner,
+.playControls .playControls__elements,
+.playControls .playControls__soundBadge,
+.playControls .playbackTimeline,
+.playControls .playbackTimeline__timePassed,
+.playControls .playbackTimeline__progressWrapper,
+.playControls .playControls__control,
+.playControls .playControl,
+.playControls .volume,
+.playControls .volume__content,
+.playControls .queue {
     background-color: transparent !important;
+    background: transparent !important;
 }
 
-/* 3. Manchmal hat der Player-Container einen eigenen Shadow/Background, diesen entfernen */
-.player {
+/* 3. Spezielle Container, die oft eigene Backgrounds haben */
+.playControls .playbackSoundBadge__titleContextContainer,
+.playControls .playbackSoundBadge__actions,
+.playControls .playControls__castControl {
     background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* 4. Box-Shadow entfernen (wird oft von SoundCloud gesetzt) */
+.playControls,
+.playControls__wrapper,
+.playControls .playbackSoundBadge {
     box-shadow: none !important;
 }
