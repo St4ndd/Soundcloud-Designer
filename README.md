@@ -1,4 +1,4 @@
-# 🎵 SoundCloud Designer
+# SoundCloud Designer
 
 [![Version](https://img.shields.io/badge/version-1.0-blue.svg)](https://github.com/yourusername/Soundcloud-Designer)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
