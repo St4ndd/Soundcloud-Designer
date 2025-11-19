@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./icon128.png" alt="Extension Icon" width="120">
+<img src="icon128.png" alt="Extension Icon" width="120">
 
 # SoundCloud Designer
 ### Transform Your Listening Experience
