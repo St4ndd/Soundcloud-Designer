@@ -7,7 +7,6 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.0-1761df?style=for-the-badge" alt="Version">
-  <img src="https://img.shields.io/badge/license-MIT-00d26a?style=for-the-badge" alt="License">
   <img src="https://img.shields.io/badge/Firefox-109+-FF7139?style=for-the-badge&logo=firefox-browser&logoColor=white" alt="Firefox">
   <img src="https://img.shields.io/badge/Manifest-V3-9333ea?style=for-the-badge" alt="Manifest">
 </p>
