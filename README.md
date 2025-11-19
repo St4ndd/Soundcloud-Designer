@@ -72,7 +72,7 @@
   <tr>
     <td align="center" width="33%">
       <img src="https://img.shields.io/badge/Blurry-1761df?style=for-the-badge" alt="Blurry"><br>
-      <sub>Adjustable blur strength (0–30px)</sub>
+      <sub>Adjustable blur strength</sub>
     </td>
     <td align="center" width="33%">
       <img src="https://img.shields.io/badge/Transparent-9333ea?style=for-the-badge" alt="Transparent"><br>
