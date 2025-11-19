@@ -19,8 +19,6 @@
   <img src="https://img.shields.io/badge/WebExtensions-00ADD8?style=flat-square&logo=mozillafirefox&logoColor=white" alt="WebExtensions">
 </p>
 
-<img src="./banner.png" alt="Banner" width="100%">
-
 <p align="center"><strong>Custom themes • Stunning backgrounds • Immersive fullscreen player</strong></p>
 
 <p>
