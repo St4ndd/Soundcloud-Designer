@@ -34,14 +34,6 @@
 
     /*transparent*/
     --transparent-color: #00000000;
-    
-    /* === DYNAMISCHE VARIABLEN (Von content.js gesteuert) === */
-    --upgrade-btn-visibility: block; /* Standardwert */
-    --upgrade-btn-custom-color: #ff5500; /* Standardwert */
-    --player-bar-bg-color: #000000ab; /* Standardwert */
-    --player-bar-backdrop-filter: blur(8px); /* Standardwert */
-    --header-bg-color: #000000ab; /* Standardwert */
-    --header-backdrop-filter: blur(8px); /* Standardwert */
 }
 
 /* =========================
@@ -49,12 +41,22 @@
    ========================= */
 body {
     background-image: var(--bg-body);
-    background-size: cover;      /* oder '100% 100%' für exakt anpassen */
+    background-size: cover;       /* oder '100% 100%' für exakt anpassen */
     background-repeat: no-repeat; /* verhindert Kacheln */
     background-attachment: fixed; /* Bild bleibt beim Scrollen stehen */
     background-position: center;  /* zentriert das Bild */
 }
 
+
+/* =========================
+   Bottom Bar / Play Controls
+   ========================= */
+.playControls__inner {
+    background-color: var(--bg-overlay) !important;
+    backdrop-filter: blur(8px);
+    transition: background 0.3s ease;
+    margin: 0 auto;
+}
 
 /* =========================
    Mixed Selection / Module
@@ -74,7 +76,7 @@ body {
 }
 
 /* =========================
-   Upgrade / Subscription Buttons (Statische Farben)
+   Upgrade / Subscription Buttons
    ========================= */
 .creatorSubscriptionsButton.header__button {
     border-color: var(--btn-primary) !important;
@@ -85,14 +87,11 @@ body {
 }
 
 /* =========================
-   Header (JETZT DYNAMISCH)
+   Header
    ========================= */
-header.header,
 .header {
-    /* WICHTIG: Nutzt jetzt die dynamischen Variablen */
-    background-color: var(--header-bg-color) !important;
-    backdrop-filter: var(--header-backdrop-filter) !important;
-    -webkit-backdrop-filter: var(--header-backdrop-filter) !important;
+    background-color: var(--bg-overlay) !important;
+    backdrop-filter: blur(8px);
     transition: background 0.3s ease;
 }
 
@@ -164,6 +163,7 @@ header.header,
 .sc-toggle-handle {
     background-color: var(--toggle-handle) !important;
 }
+
 
 
 /* Freischalten von Artist-Tools ab 2,99 € monatlich ausblenden */
@@ -255,89 +255,8 @@ header.header,
 }
 
 
+
 /* Serachtitle auf transparent machen.*/
 .searchTitle {
     background-color: transparent !important;
-}
-
-
-/* =======================================
-   Upgrade / Subscription Button Fix
-   (Dynamische Steuerung über JS)
-   ======================================= */
-
-/* 1. Sichtbarkeit/Ausblenden - MEHR SPEZIFITÄT */
-/* Zielt auf den Premium-Button, den Pro-Link und alle anderen Go-Premium-Buttons */
-header.header .header__userNav .goPremiumButton,
-header.header .header__userNav a[href$="/premium"],
-header.header .header__userNav a[href$="/pro"],
-header.header .header__userNav a[href*="/pro-unlimited"],
-.header__navMenu .goPremiumButton,
-.creatorSubscriptionsButton.header__button { 
-    display: var(--upgrade-btn-visibility) !important;
-    visibility: visible !important; /* Überschreibt mögliche visibility:hidden */
-}
-
-/* 2. Farbe anwenden - MEHR SPEZIFITÄT */
-header.header .header__userNav .goPremiumButton,
-header.header .header__userNav a[href$="/premium"],
-header.header .header__userNav a[href$="/pro"],
-.header__navMenu .goPremiumButton,
-.sc-button-upgrade,
-.creatorSubscriptionsButton.header__button {
-    background-color: var(--upgrade-btn-custom-color) !important;
-    border-color: var(--upgrade-btn-custom-color) !important;
-    color: white !important;
-}
-
-
-/* =======================================
-   Bottom Bar / Play Controls Fix
-   (KOMPLETT ÜBERARBEITET mit höherer Spezifität)
-   ======================================= */
-
-/* 1. Hauptcontainer der Leiste - WICHTIG: Mehrere Selektoren für alle Varianten */
-.playControls,
-.playControls__wrapper,
-.playControls.m-visible,
-div.playControls,
-.playControls__inner {
-    background-color: var(--player-bar-bg-color) !important;
-    backdrop-filter: var(--player-bar-backdrop-filter) !important;
-    -webkit-backdrop-filter: var(--player-bar-backdrop-filter) !important;
-}
-
-/* 2. Hintergrund der inneren Elemente entfernen */
-/* ALLE möglichen Kinder transparent machen */
-.playControls *,
-.playControls .playbackSoundBadge,
-.playControls .playbackSoundBadge__body,
-.playControls .playControls__inner,
-.playControls .playControls__elements,
-.playControls .playControls__soundBadge,
-.playControls .playbackTimeline,
-.playControls .playbackTimeline__timePassed,
-.playControls .playbackTimeline__progressWrapper,
-.playControls .playControls__control,
-.playControls .playControl,
-.playControls .volume,
-.playControls .volume__content,
-.playControls .queue {
-    background-color: transparent !important;
-    background: transparent !important;
-}
-
-/* 3. Spezielle Container, die oft eigene Backgrounds haben */
-.playControls .playbackSoundBadge__titleContextContainer,
-.playControls .playbackSoundBadge__actions,
-.playControls .playControls__castControl {
-    background-color: transparent !important;
-    background: transparent !important;
-}
-
-/* 4. Box-Shadow entfernen (wird oft von SoundCloud gesetzt) */
-.playControls,
-.playControls__wrapper,
-.playControls .playbackSoundBadge {
-    box-shadow: none !important;
 }

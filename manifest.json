@@ -33,15 +33,5 @@
       "id": "soundcloud-designer@example.com",
       "strict_min_version": "109.0"
     }
-  },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "blue_space_8k.jpg",
-        "icon48.png",
-        "icon128.png"
-      ],
-      "matches": ["*://soundcloud.com/*"]
-    }
-  ]
+  }
 }
