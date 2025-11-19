@@ -19,9 +19,11 @@
   <img src="https://img.shields.io/badge/WebExtensions-00ADD8?style=flat-square&logo=mozillafirefox&logoColor=white" alt="WebExtensions">
 </p>
 
+<img src="./banner.png" alt="Banner" width="100%">
+
 <p align="center"><strong>Custom themes • Stunning backgrounds • Immersive fullscreen player</strong></p>
 
-<p>
+<p align="center">
   <a href="#features">Features</a> • 
   <a href="#installation">Installation</a> • 
   <a href="#usage">Usage</a> • 
@@ -70,11 +72,11 @@
   <tr>
     <td align="center" width="33%">
       <img src="https://img.shields.io/badge/Blurry-1761df?style=for-the-badge" alt="Blurry"><br>
-      <sub>Adjustable blur strength</sub>
+      <sub>Adjustable blur strength (0–30px)</sub>
     </td>
     <td align="center" width="33%">
       <img src="https://img.shields.io/badge/Transparent-9333ea?style=for-the-badge" alt="Transparent"><br>
-      <sub>Color with/out opacity</sub>
+      <sub>Custom color with opacity</sub>
     </td>
     <td align="center" width="33%">
       <img src="https://img.shields.io/badge/Solid_Color-00d26a?style=for-the-badge" alt="Solid"><br>
@@ -101,8 +103,13 @@
 </div>
 
 ### Firefox
+Install as Firefox Addon
+[Firefox Addon Store](https://addons.mozilla.org/de/firefox/user/19581157/)
 
+
+### Firefox Debug
+
+Download & use as Debug Extension
 ```bash
 git clone https://github.com/yourusername/Soundcloud-Designer.git
 cd Soundcloud-Designer
-
