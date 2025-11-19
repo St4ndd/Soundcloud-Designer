@@ -74,7 +74,7 @@
     </td>
     <td align="center" width="33%">
       <img src="https://img.shields.io/badge/Transparent-9333ea?style=for-the-badge" alt="Transparent"><br>
-      <sub>Custom color with opacity</sub>
+      <sub>Color with opacity</sub>
     </td>
     <td align="center" width="33%">
       <img src="https://img.shields.io/badge/Solid_Color-00d26a?style=for-the-badge" alt="Solid"><br>
